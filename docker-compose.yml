@@ -1,0 +1,24 @@
+---
+version: '3'
+services:
+  gw:
+    build: ./gw
+    network_mode: bridge
+    tty: true
+    restart: always
+    ports:
+      - ${PORT:-3000}:80
+    links:
+      - auth
+      - app
+  auth:
+    build: ./auth
+    network_mode: bridge
+    tty: true
+    restart: always
+  app:
+    build: ./app
+    network_mode: bridge
+    tty: true
+    restart: always
+
